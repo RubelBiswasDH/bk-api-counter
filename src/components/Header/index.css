@@ -1,0 +1,28 @@
+.header {
+    margin: auto;
+    padding: .6rem 1.2rem;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    z-index: 6;
+    height: 10vh;
+    font-size: 5vh;
+    background-color: rgba(56,64,78,.85);
+}
+
+.primary-text {
+    color: #fff;
+}
+.nav-text {
+    color: #2ddbac;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
