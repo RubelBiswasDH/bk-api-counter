@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import Header from './components/Header';
-import Logo from './images/BKOI_TYPO_BLACK_ONLY.svg';
+// import Logo from './images/BKOI_TYPO_BLACK_ONLY.svg';
 // https://api.bmapsbd.com/business/api/daily/usage/total
 
 const App = () => {
@@ -21,17 +21,28 @@ const App = () => {
   }
   React.useEffect(() => {
 
-    const URL = "https://api.bmapsbd.com/business/api/daily/usage/total";
-   
+    const APICountURL = "https://api.bmapsbd.com/business/api/daily/usage/total";
+    const mapAPICountURL = "https://geoserver.bmapsbd.com/api/count";
     const fetchData = async () => {
       try {
-        const res = await fetch(URL);
-        const json = await res.json();
-        //console.log(json)
-        const count = json.current_day[0].totalUsage
+        //fetching first api
+        const APIRes = await fetch(APICountURL);
+        const APIResJson = await APIRes.json();
+        const APICount = +APIResJson.current_day[0].totalUsage
+
+        //console.log(mapAPIResJson)
+
+        //fetching second api
+        const mapAPIRes = await fetch(mapAPICountURL);
+        const mapAPIResJson = await mapAPIRes.json();
+        const mapAPICount = +mapAPIResJson.total
+
+        //console.log(mapAPIResJson.total)
+        
+        
         //console.log(json.current_day[0].totalUsage)
-       
-        setNumber(count)
+        //console.log("count 1 count 2 totat", APICount, mapAPICount, APICount+mapAPICount)
+        setNumber(APICount+mapAPICount)
 
         
       } catch (error) {
